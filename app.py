@@ -143,10 +143,11 @@ def delete_expense(id):
     cur.close()
     return jsonify({"message": "Deleted"})
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 import os
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 10000)),
+        debug=False  # turn off debug for Render production
+    )
