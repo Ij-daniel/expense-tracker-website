@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-body">
+<!-- Hamburger -->
+<!-- TOP NAVBAR -->
+<div class="top-nav">
+    <div class="hamburger" onclick="openSidebar()">☰</div>
+    <div class="nav-logo">ExpenseTracker</div>
+</div>
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+
+    <div class="close-btn" onclick="closeSidebar()">✖</div>
+
+    <ul class="sidebar-links">
+        <li>Dashboard</li>
+        <li>Expenses</li>
+        <li>Reports</li>
+        <li><a href="logout">Logout</a></li>
+    </ul>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+
+    <!-- Top Header -->
+    <div class="top-header glass">
+        <h1>Welcome, {{ username }}</h1>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stats-grid">
+        <div class="glass stat-card">
+            <h3>Total Expenses</h3>
+            <p>₦<span id="total">0</span></p>
+        </div>
+
+        <div class="glass stat-card">
+            <h3>This Month</h3>
+            <p id="month-total">₦0</p>
+        </div>
+
+        <div class="glass stat-card">
+            <h3>Top Category</h3>
+            <p id="top-category">-</p>
+        </div>
+    </div>
+
+    <!-- Add Expense + List Grid -->
+    <div class="content-grid">
+
+        <!-- Add Expense -->
+        <div class="glass card">
+            <h2>Add Expense</h2>
+            <form id="expense-form">
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount (₦)" required>
+                <input type="text" id="category" placeholder="Category" required>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+
+        <!-- Expense List -->
+        <div class="glass card">
+            <h2>Recent Expenses</h2>
+            <ul id="expense-list" class="expense-list"></ul>
+        </div>
+
+    </div>
+
+    <!-- Chart Section -->
+    <div class="glass chart-card">
+        <h2>Monthly Summary</h2>
+        <canvas id="expenseChart" height="100"></canvas>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="center-page">
+
+<div class="card">
+    <h1>Login</h1>
+
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+
+        <div class="password-wrapper">
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword()">Show</span>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px;">
+        Don't have an account? <a href="/register">Register</a>
+    </p>
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    const toggle = document.querySelector(".toggle-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        toggle.innerText = "Hide";
+    } else {
+        password.type = "password";
+        toggle.innerText = "Show";
+    }
+}
+</script>
+
+</body>
+</html>

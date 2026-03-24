@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar animate-on-load">
+    <div class="logo">ExpenseTracker</div>
+
+    <!-- HAMBURGER ICON -->
+    <div class="hamburger" onclick="openMenu()">
+        ☰
+    </div>
+
+    <!-- NAV LINKS -->
+    <ul class="nav-links" id="navMenu">
+        <!-- CLOSE BUTTON -->
+        <div class="close-btn" onclick="closeMenu()">✕</div>
+
+        <li><a href="#">Home</a></li>
+        <li><a href="#features" onclick="closeMenu()">Features</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+        <li><a href="#how-it-works" onclick="closeMenu()">How it works</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register" class="btn">Sign Up</a></li>
+    </ul>
+</nav>
+
+<div class="page-wrapper">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero animate-on-load delay-1">
+        <div class="hero-content">
+
+            <div class="hero-text animate-on-load delay-2">
+                <h1>Smart Expense Tracking Made Simple</h1>
+                <p>
+                    Our Expense Tracker helps you record, monitor, and analyze your spending habits.
+                    Stay in control of your finances and make smarter financial decisions every day.
+                </p>
+
+                <div style="margin-top:20px;">
+                    <a href="/register" class="btn">Get Started</a>
+                    <a href="/login" class="btn" style="margin-left:10px;">Login</a>
+                </div>
+            </div>
+
+            <div class="hero-image animate-on-load delay-3">
+                <img src="{{ url_for('static', filename='images/landing-person.jpg') }}"
+                     alt="Professional working at desk">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section id="features" class="scroll-animate" style="margin-top:120px;">
+        <div style="max-width:1200px; margin:auto; text-align:center;">
+            <h2>Why Choose Our Expense Tracker?</h2>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:30px; margin-top:50px;">
+
+                <div class="card">
+                    <h3>Easy Expense Logging</h3>
+                    <p>Quickly add expenses with category and description in seconds.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Visual Reports</h3>
+                    <p>View charts and summaries to understand your monthly spending.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Secure & Reliable</h3>
+                    <p>Your data is securely stored in a structured MySQL database.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Smart Tracking</h3>
+                    <p>Automatically calculate totals and monitor financial growth.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="scroll-animate" style="margin-top:120px;">
+        <div style="max-width:900px; margin:auto; text-align:center;">
+            <h2>About The System</h2>
+            <p style="margin-top:20px; color:#94a3b8;">
+                This Expense Tracker is a full-stack web application built using Python,
+                Flask, MySQL, HTML, CSS, and JavaScript. It allows users to create accounts,
+                securely log expenses, and analyze spending trends in a simple and elegant interface.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section id="how-it-works" class="scroll-animate" style="margin-top:120px; text-align:center;">
+        <h2>How It Works</h2>
+
+        <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; margin-top:50px;">
+
+            <div class="card" style="width:200px;">
+                <h3>1</h3>
+                <p>Create an account</p>
+            </div>
+
+            <div class="card" style="width:200px;">
+                <h3>2</h3>
+                <p>Add your expenses</p>
+            </div>
+
+            <div class="card" style="width:200px;">
+                <h3>3</h3>
+                <p>Track totals & view reports</p>
+            </div>
+
+            <div class="card" style="width:200px;">
+                <h3>4</h3>
+                <p>Improve your financial habits</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <section class="scroll-animate" style="margin-top:120px; text-align:center;">
+        <h2>Start Managing Your Money Today</h2>
+        <div style="margin-top:30px;">
+            <a href="/register" class="btn">Create Free Account</a>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="scroll-animate" style="margin-top:120px; text-align:center; padding:30px; color:#94a3b8;">
+        © 2026 Expense Tracker | Built with Python & MySQL
+    </footer>
+
+</div>
+
+<!-- ================= SCROLL ANIMATION SCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    document.querySelectorAll(".scroll-animate").forEach((el) => {
+        observer.observe(el);
+    });
+
+});
+
+function openMenu() {
+    document.getElementById("navMenu").classList.add("show");
+}
+
+function closeMenu() {
+    document.getElementById("navMenu").classList.remove("show");
+}
+</script>
+
+</body>
+</html>
